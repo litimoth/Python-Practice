@@ -25,4 +25,4 @@ def primes_v01():
 # main()
 fn = 'primes_v01'
 t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
-print fn, "(): took", (t.timeit(number=RUNS) / RUNS), "seconds\n"
+print fn, "(): took", round((t.timeit(number=RUNS) / RUNS), 6), "seconds\n"
