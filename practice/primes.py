@@ -1,14 +1,19 @@
+MIN = 2
+MAX = 1000
+
 # Version 1, super basic
-primes = []
-isPrime = False;
+def primes_v01():
+	primes = []
+	isPrime = False;
+	for i in range(MIN, MAX):
+		isPrime = True;
+		for j in range(MIN, i-1):
+			if ((i % j) == 0):
+				isPrime = False;
+				break
+		if (isPrime):
+			primes.append(i)
+	return primes
 
-for i in range(2, 1000):
-	isPrime = True;
-	for j in range(2, i-1):
-		if ((i % j) == 0):
-			isPrime = False;
-			break
-	if (isPrime):
-		primes.append(i)
-
-print primes
+# main()
+print primes_v01()
