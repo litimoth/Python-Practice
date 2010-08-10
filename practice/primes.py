@@ -40,9 +40,9 @@ def primes_v02():
 
 
 # main()
-fn = 'primes_v01'
-t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
-print fn, "(): took", round((t.timeit(number=RUNS) / RUNS), 6), "seconds"
-fn = 'primes_v02'
-t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
-print fn, "(): took", round((t.timeit(number=RUNS) / RUNS), 6), "seconds"
+FN = 'primes_v'
+for n in range(1,3):
+	fn = FN + (str(n) if (n >= 10) else ('0' + str(n)))
+	t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
+	time = (t.timeit(number=RUNS) / RUNS)
+	print "%s(): took % 7.3f milliseconds" % (fn, time * 1000)
