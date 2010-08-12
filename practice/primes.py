@@ -11,12 +11,11 @@ RUNS = 10
 def primes_v01():
 	MIN = 2
 	primes = []
-	isPrime = False;
 	for i in range(MIN, MAX):
-		isPrime = True;
+		isPrime = True
 		for j in range(MIN, i-1):
 			if ((i % j) == 0):
-				isPrime = False;
+				isPrime = False
 				break
 		if (isPrime):
 			primes.append(i)
@@ -27,12 +26,11 @@ def primes_v01():
 def primes_v02():
 	MIN = 3
 	primes = [2]
-	isPrime = False;
 	for i in range(MIN, MAX, 2):
-		isPrime = True;
+		isPrime = True
 		for j in range(MIN, i-1, 2):
 			if ((i % j) == 0):
-				isPrime = False;
+				isPrime = False
 				break
 		if (isPrime):
 			primes.append(i)
@@ -45,13 +43,12 @@ def primes_v02():
 def primes_v03():
 	MIN = 3
 	primes = [2]
-	isPrime = False;
 	for i in range(MIN, MAX, 2):
-		isPrime = True;
+		isPrime = True
 		sqrtOfI = int(math.ceil(math.sqrt(i))) + 1  #need +1 to avoid 25 -> 5 being skipped
 		for j in range(MIN, sqrtOfI, 2):
 			if ((i % j) == 0):
-				isPrime = False;
+				isPrime = False
 				break
 		if (isPrime):
 			primes.append(i)
@@ -62,12 +59,29 @@ def primes_v03():
 def primes_v04():
 	MIN = 3
 	primes = [2]
-	isPrime = False;
 	for i in range(MIN, MAX, 2):
-		isPrime = True;
+		isPrime = True
 		for j in primes:
 			if ((i % j) == 0):
-				isPrime = False;
+				isPrime = False
+				break
+		if (isPrime):
+			primes.append(i)
+	return primes
+
+
+# Version 5 - seive like above, but inner loop checks only up to sqrt(n)
+def primes_v05():
+	MIN = 3
+	primes = [2]
+	for i in range(MIN, MAX, 2):
+		isPrime = True
+		sqrtOfI = int(math.ceil(math.sqrt(i))) + 1  #need +1 to avoid 25 -> 5 being skipped
+		for j in primes:
+			if (j > sqrtOfI):
+				break
+			if ((i % j) == 0):
+				isPrime = False
 				break
 		if (isPrime):
 			primes.append(i)
@@ -76,7 +90,7 @@ def primes_v04():
 
 # main()
 FN = 'primes_v'
-for n in range(1,5):
+for n in range(1,6):
 	fn = FN + (str(n) if (n >= 10) else ('0' + str(n)))
 	t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
 	time = (t.timeit(number=RUNS) / RUNS)
@@ -87,3 +101,4 @@ for n in range(1,5):
 #print primes_v02()
 #print primes_v03()
 #print primes_v04()
+#print primes_v05()
