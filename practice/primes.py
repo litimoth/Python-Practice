@@ -58,9 +58,25 @@ def primes_v03():
 	return primes
 
 
+# Version 4 - a basic seive program, only check even nums
+def primes_v04():
+	MIN = 3
+	primes = [2]
+	isPrime = False;
+	for i in range(MIN, MAX, 2):
+		isPrime = True;
+		for j in primes:
+			if ((i % j) == 0):
+				isPrime = False;
+				break
+		if (isPrime):
+			primes.append(i)
+	return primes
+
+
 # main()
 FN = 'primes_v'
-for n in range(1,4):
+for n in range(1,5):
 	fn = FN + (str(n) if (n >= 10) else ('0' + str(n)))
 	t = timeit.Timer(fn + '()', 'from __main__ import ' + fn)
 	time = (t.timeit(number=RUNS) / RUNS)
@@ -70,3 +86,4 @@ for n in range(1,4):
 #print primes_v01()
 #print primes_v02()
 #print primes_v03()
+#print primes_v04()
